@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Link} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import '../App.css'
 
 
@@ -8,8 +8,7 @@ function IndividualCard(props) {
     const {img,vote,title,id} = props;
 
     return (
-        <Router>
-            <Link to = {`/movies/${id}`}>
+            <Link to = {`/movies/${id}`} style={{color: 'black'}}>
                 <div className = 'card'>
                     <div className = 'card_poster'>
                         <img src = {`${IMG_URL + img}`} alt = {`${title}`} />
@@ -22,7 +21,6 @@ function IndividualCard(props) {
                     </div>
                 </div>
             </Link>
-        </Router>
     )
 }
 
