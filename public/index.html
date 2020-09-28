@@ -39,5 +39,20 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      setTimeout(()=>{
+        const elems = document.querySelectorAll('.card');
+        if(elems) {
+          elems.forEach(element => {
+            element.addEventListener('mouseover',() => {
+              element.childNodes[1].style.display = 'flex'
+            })
+            element.addEventListener('mouseout',() => {
+              element.childNodes[1].style.display = 'none'
+            })
+          });
+        }
+      },1000)
+    </script>
   </body>
 </html>
