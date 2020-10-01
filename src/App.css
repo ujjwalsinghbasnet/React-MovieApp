@@ -1,3 +1,20 @@
+.header{
+    z-index: 3;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    opacity: 0.8;
+    top: 0;
+    width:100%;
+    height: 10vh;
+    background: black;
+    box-shadow: inset 0px 10px 15px #000000 ;
+}
+.nav_links{
+    margin-right: 40px;
+    color: rgb(226, 220, 220);
+    text-decoration: none;
+}
 .card{
     position: relative;
     padding: 0;
@@ -5,7 +22,10 @@
     display: flex;
     flex-direction: column;
 }
-.card_poster img{
+.links{
+    display: block;
+}
+.card img{
     height: 100%;
     width: 100%;
 }
@@ -23,10 +43,11 @@
     transition: 0.6s;
     animation: ease-in;
 }
-.trending_section{
+.infinite-scroll-component{
     background: black;
     display: grid;
     grid-gap: 8px;
+    min-height: 100vh;
     grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
 }
 
@@ -53,8 +74,6 @@
     grid-column: 1/3;
     overflow: hidden;
     z-index: 2;
-    box-shadow: inset 120px 100px 250px red;
-
 }
 .movie_poster img{
     height: 100%;

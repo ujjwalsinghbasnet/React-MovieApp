@@ -2,33 +2,33 @@ import React,{useState,useEffect} from 'react';
 import API_KEY from '../apikey';
 import {useParams} from 'react-router-dom'
 import SingleMovie from './SingleMovie';
+// import {withRouter} from 'react-router-dom'
 // import IndividualCard from './IndividualCard';
 
 
-function Moviepage(){
+function Moviepage( {url,isMovie} ){
     const [movie,setMovie] = useState({})
     const [isLoading,setLoading] = useState(true)
     const {id} = useParams();
 
     useEffect(() => {
         setLoading(true); 
-        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`)
+        fetch(`${url}/${id}?api_key=${API_KEY}&language=en-US`)
         .then(res => res.json())
         .then(data => {
             setMovie(data);
             setLoading(false);
         })
     },[])
-
+    console.log(movie)
     let movies = '';
     if(isLoading) {
        movies = 'Loading! Plz Wait'
     } else {
-        movies = <SingleMovie data = {movie} />
+        movies = <SingleMovie data = {movie} isMovie={isMovie}/>
     }
 
     return(
-        // {movies}
         <div>{movies}</div>
     )
 }
