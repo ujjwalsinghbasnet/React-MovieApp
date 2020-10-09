@@ -43,7 +43,7 @@
     transition: 0.6s;
     animation: ease-in;
 }
-.infinite-scroll-component{
+.infinite-scroll-component,.search{
     background: black;
     display: grid;
     grid-gap: 8px;
@@ -115,4 +115,10 @@
     letter-spacing: 1px;
     font-size: 1em;
     margin-top: 1em;
+}
+
+
+a .button {
+    background: none;
+    outline: none;
 }

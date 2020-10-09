@@ -31,9 +31,9 @@ function Header() {
         <div className = 'header'>
             <Link className='nav_links' to = '/'>Movie</Link>
             <Link className='nav_links' to = '/tv'>TV</Link>
-            {/* <form onSubmit = {handleSubmit}>
-                <input value = {inputVal} onChange = {changeHandler} /> 
-            </form> */}
+            <Link className = 'button' to = '/search'>
+                <button type = 'button'> Search </button>
+            </Link>
         </div>
     )
 }
