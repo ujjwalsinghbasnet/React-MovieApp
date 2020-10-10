@@ -6,7 +6,7 @@ function SingleMovie({data,isMovie}) {
 
     let ind_genre = '';
 
-    {genres ? ind_genre = genres.map((genre) => <Genres  genre = {genre.name}  key={genre.id}/>) : ind_genre = ''}
+    genres ? ind_genre = genres.map((genre) => <Genres  genre = {genre.name}  key={genre.id}/>) : ind_genre = '' ;
   
     const backStyle = {
         background: `url(${IMG_URL + backdrop_path}) 50% 50%`,

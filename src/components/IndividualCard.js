@@ -20,7 +20,7 @@ function IndividualCard(props) {
         }
         let target = '';
         if(url === `https://api.themoviedb.org/3/trending/movie`){ //checking if the clicked item is movie or tv series
-          target = `/movies`
+          target = `/movie`
         } else {
           target = `/tv`;
           title = name;

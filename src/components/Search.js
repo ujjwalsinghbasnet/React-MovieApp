@@ -1,17 +1,17 @@
 import React from 'react'
-import IndividualCard from './IndividualCard';
-
+import API_KEY from '../apikey'
+import {Link} from 'react-router-dom'
 
 
 function Search () {
 
     const [val,setVal] = React.useState("");
-    const [isLoading,setLoading] = React.useState(true);
+    const [isLoading,setLoading] = React.useState(false);
     const [data,setData] = React.useState([])
 
     const fetchData = function() {
         setLoading(true);
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=817f9ef9ff44afaafd9b0bf0b2293763&query=${val}&page=1`)
+        fetch(`https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${val}&page=1`)
         .then(res => res.json())
         .then(result => {
             
@@ -34,23 +34,44 @@ function Search () {
 
     let movies = '';
     if(isLoading) {
-        movies = `Loading! Please Wait!`
+        movies = `Loading! Please Wait`
     } else {
-        movies = data.map((res) => <IndividualCard img={res.poster_path} vote={res.vote_average} title ={res.title} name = {res.original_name} key={res.id} id={res.id}/>)
+        movies = data.map((res) => <IndividualSearchCard img={res.poster_path} vote={res.vote_average} title ={res.title} name = {res.original_name} key={res.id} id={res.id} type = {res.media_type}/>)
     }
-
     return (
-        <>
+        <div className = 'SearchBody'>
             <div className = 'input'>
+                <h2>Search Movies/TV shows!</h2>
                 <form onSubmit={handleSubmit}>
-                    <input value = {val} onChange = {handleChange} />
+                    <input value = {val} onChange = {handleChange} type = 'text' placeholder ='Search here'/>
                 </form>
             </div>
             <div className='search'>
                 {movies}
             </div>
-        </>
+        </div>
     )
 }
 
+
+function IndividualSearchCard(props) {
+    const IMG_URL = 'https://image.tmdb.org/t/p/original';
+    const img_url = 'https://image.tmdb.org/t/p/original/3S9u9oMFEwvzt1OGSv9PBowzmiD.jpg';
+    let {img,vote,title,id,type} = props;
+    return (
+            <Link to = {`${type}/${id}`} style={{color: 'black'}} className='links'>
+                <div className = 'card'>
+                    <div className = 'card_poster'>
+                        <img src = {img === null ? `${img_url}` :`${IMG_URL + img}`} alt = {`${title}`} />
+                    </div>
+                    <div className = 'above_poster'>
+                      <div className = 'card_title'>
+                          <h3>{title}</h3>
+                      </div>
+                      <span className = 'card_rating'>{vote}</span>
+                    </div>
+                </div>
+            </Link>
+    )
+}
 export default Search;

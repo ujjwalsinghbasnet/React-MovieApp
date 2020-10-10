@@ -10,9 +10,9 @@ function App() {
      <Router>
        <Switch>
          <Route path = '/'  exact render={(props) => <Popular key = 'movie' {...props} url = {`https://api.themoviedb.org/3/trending/movie`}/>}/>
-         <Route path = '/tv'  render={(props) => <Popular key = 'tv' {...props} url = {`https://api.themoviedb.org/3/trending/tv`}/>}/>
-         <Route path='/movies/:id'  render = {props => <Moviepage {...props} url = {`https://api.themoviedb.org/3/movie`} isMovie = {true}/>}/>
-         <Route path='/tv/:id' render = {props => <Moviepage {...props} url = {`https://api.themoviedb.org/3/tv`} isMovie = {false}/>}/>
+         <Route path = '/tv'  exact render={(props) => <Popular key = 'tv' {...props} url = {`https://api.themoviedb.org/3/trending/tv`}/>}/>
+         <Route path='/movie/:id'  render = {props => <Moviepage key = 'singleMovie' {...props} url = {`https://api.themoviedb.org/3/movie`} isMovie = {true}/>}/>
+         <Route path='/tv/:id' render = {props => <Moviepage key = 'singleTV' {...props} url = {`https://api.themoviedb.org/3/tv`} isMovie = {false}/>}/>
          <Route path = '/search' component = {Search} />
        </Switch>
      </Router>

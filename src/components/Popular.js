@@ -9,7 +9,6 @@ function Trending({ url }){
     const [trending,setTrending] = useState({});
     const [isLoading, setLoading] = useState(true);
     const [page,setPage] = useState(1);
-    // const {url} = props.url;
 
     const fetchData = function() {
         setLoading(true);

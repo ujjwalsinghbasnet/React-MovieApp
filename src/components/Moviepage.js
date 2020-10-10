@@ -2,8 +2,6 @@ import React,{useState,useEffect} from 'react';
 import API_KEY from '../apikey';
 import {useParams} from 'react-router-dom'
 import SingleMovie from './SingleMovie';
-// import {withRouter} from 'react-router-dom'
-// import IndividualCard from './IndividualCard';
 
 
 function Moviepage( {url,isMovie} ){
@@ -12,14 +10,16 @@ function Moviepage( {url,isMovie} ){
     const {id} = useParams();
 
     useEffect(() => {
+        console.log('hey')
         setLoading(true); 
         fetch(`${url}/${id}?api_key=${API_KEY}&language=en-US`)
         .then(res => res.json())
         .then(data => {
             setMovie(data);
+            console.log(data)
             setLoading(false);
         })
-    },[])
+    },[url,id])
     console.log(movie)
     let movies = '';
     if(isLoading) {
