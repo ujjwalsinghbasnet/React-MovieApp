@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/18f78da3-c5d8-45e0-aa0c-37ed75969f35/deploy-status)](https://app.netlify.com/sites/movieappclone-react/deploys)
+
 ## Available Scripts
 
 In the project directory, you can run:
