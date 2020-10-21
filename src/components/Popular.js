@@ -11,7 +11,7 @@ function Trending({ url }){
     const [page,setPage] = useState(1);
 
     const fetchData = function() {
-        setLoading(true);
+
         fetch(`${url}/week?api_key=${API_KEY}&language=en-US&page=${page}`)
         .then(res => res.json())
         .then(data => {
@@ -27,12 +27,14 @@ function Trending({ url }){
         })
     }
     useEffect(() => {
+        setLoading(true);
+        // eslint-disable-next-line
         fetchData();
     },[]);
 
     let movies = '';
     if(isLoading) {
-        movies = 'Loading..........'
+        return  'Loading..........';
     } else {
         movies = trending.trending.map((res) => <IndividualCard img={res.poster_path} vote={res.vote_average} title ={res.title} name = {res.original_name} key={res.id} id={res.id} url = {url}/>)
     }
