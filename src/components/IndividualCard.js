@@ -6,7 +6,7 @@ import '../App.css'
 function IndividualCard(props) {
     const IMG_URL = 'https://image.tmdb.org/t/p/original';
     const img_url = 'https://image.tmdb.org/t/p/original/3S9u9oMFEwvzt1OGSv9PBowzmiD.jpg';
-    let {img,vote,title,id,url,name} = props;
+    let {img,vote,title,id,url,name,type} = props;
     const elems = document.querySelectorAll('.card');
         if(elems) {
           elems.forEach(element => {
@@ -19,11 +19,15 @@ function IndividualCard(props) {
           });
         }
         let target = '';
-        if(url === `https://api.themoviedb.org/3/trending/movie`){ //checking if the clicked item is movie or tv series
+        if(!type){
+          if(url === `https://api.themoviedb.org/3/trending/movie`){ //checking if the clicked item is movie or tv series
           target = `/movie`
         } else {
           target = `/tv`;
           title = name;
+        }
+        } else {
+          target=type;
         }
     return (
             <Link to = {`${target}/${id}`} style={{color: 'black'}} className='links'>

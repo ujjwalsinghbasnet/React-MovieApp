@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useRef,useEffect} from 'react'
 import API_KEY from '../apikey'
-import {Link} from 'react-router-dom'
+import IndividualCard from './IndividualCard';
 
 
 function Search () {
@@ -31,19 +31,22 @@ function Search () {
         e.preventDefault();
         fetchData();
     }
+    const refContainer = useRef(null);
+
+    useEffect(()=>refContainer.current.focus())
 
     let movies = '';
     if(isLoading) {
         movies = `Loading! Please Wait`
     } else {
-        movies = data.map((res) => <IndividualSearchCard img={res.poster_path} vote={res.vote_average} title ={res.title} name = {res.original_name} key={res.id} id={res.id} type = {res.media_type}/>)
+        movies = data.map((res) => <IndividualCard img={res.poster_path} vote={res.vote_average} title ={res.title} name = {res.original_name} key={res.id} id={res.id} type = {res.media_type}/>)
     }
     return (
         <div className = 'SearchBody'>
             <div className = 'input'>
                 <h2>Search Movies/TV shows!</h2>
                 <form onSubmit={handleSubmit}>
-                    <input value = {val} onChange = {handleChange} type = 'text' placeholder ='Search here'/>
+                    <input value = {val} onChange = {handleChange} type = 'text' placeholder ='Search here' ref={refContainer}/>
                 </form>
             </div>
             <div className='search'>
@@ -54,24 +57,30 @@ function Search () {
 }
 
 
-function IndividualSearchCard(props) {
-    const IMG_URL = 'https://image.tmdb.org/t/p/original';
-    const img_url = 'https://image.tmdb.org/t/p/original/3S9u9oMFEwvzt1OGSv9PBowzmiD.jpg';
-    let {img,vote,title,id,type} = props;
-    return (
-            <Link to = {`${type}/${id}`} style={{color: 'black'}} className='links'>
-                <div className = 'card'>
-                    <div className = 'card_poster'>
-                        <img src = {img === null ? `${img_url}` :`${IMG_URL + img}`} alt = {`${title}`} />
-                    </div>
-                    <div className = 'above_poster'>
-                      <div className = 'card_title'>
-                          <h3>{title}</h3>
-                      </div>
-                      <span className = 'card_rating'>{vote}</span>
-                    </div>
-                </div>
-            </Link>
-    )
-}
+// function IndividualSearchCard(props) {
+//     const IMG_URL = 'https://image.tmdb.org/t/p/original';
+//     const img_url = 'https://image.tmdb.org/t/p/original/3S9u9oMFEwvzt1OGSv9PBowzmiD.jpg';
+//     let {img,vote,title,id,type} = props;
+//     const elems = document.querySelectorAll('.card');
+//     console.log(elems)
+//     elems.forEach(card => console.log('hello'))
+//     // elems[0].forEach(element => {
+//     //     console.log(element)
+//     // });
+//     return (
+//             <Link to = {`${type}/${id}`} style={{color: 'black'}} className='links'>
+//                 <div className = 'card'>
+//                     <div className = 'card_poster'>
+//                         <img src = {img === null ? `${img_url}` :`${IMG_URL + img}`} alt = {`${title}`} />
+//                     </div>
+//                     <div className = 'above_poster'>
+//                       <div className = 'card_title'>
+//                           <h3>{title}</h3>
+//                       </div>
+//                       <span className = 'card_rating'>{vote}</span>
+//                     </div>
+//                 </div>
+//             </Link>
+//     )
+// }
 export default Search;

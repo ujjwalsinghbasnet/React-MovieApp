@@ -43,14 +43,20 @@
     transition: 0.6s;
     animation: ease-in;
 }
-.infinite-scroll-component,.search{
+.infinite-scroll-component{
     background: black;
     display: grid;
     grid-gap: 8px;
     min-height: 100vh;
     grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
 }
-
+.search{
+    background: black;
+    display: grid;
+    grid-gap: 8px;
+    min-height: 100vh;
+    grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+}
 .movie_body{
     display: grid;
     position: relative;
